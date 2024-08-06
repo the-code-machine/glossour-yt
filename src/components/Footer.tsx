@@ -11,7 +11,7 @@ export function Footer() {
                     Subscribe for the <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#F58529] via-[#DD2A7B] to-[#833AB4] font-sans font-bold">Latest Updates</span>
                 </h1>
                 <p className="text-neutral-500 max-w-2xl mx-auto my-2 text-sm relative z-10">
-                    Stay up-to-date with our latest promotions and services. Whether you're looking to boost your YouTube channel, grow your Spotify followers, or enhance your Instagram presence, we've got the best deals and tips for you. Join our waitlist to never miss out!
+                    Stay up-to-date with our latest promotions and services. Whether you are looking to boost your YouTube channel, grow your Spotify followers, or enhance your Instagram presence, we have got the best deals and tips for you. Join our waitlist to never miss out!
                 </p>
                 <div className=" md:flex-row flex-col flex gap-4">
                     <input
