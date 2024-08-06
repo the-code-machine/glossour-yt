@@ -38,7 +38,7 @@ export const MenuItem = ({
                     transition={transition}
                 >
                     {active === item && (
-                        <div className="absolute top-[calc(100%_+_1.2rem)] left-1/2 transform -translate-x-1/2 pt-4">
+                        <div className="absolute top-[calc(100%_+_1.2rem)] left-1/2 transform -translate-x-1/2 pt-2">
                             <motion.div
                                 transition={transition}
                                 layoutId="active" // layoutId ensures smooth animation
@@ -46,7 +46,7 @@ export const MenuItem = ({
                             >
                                 <motion.div
                                     layout // layout ensures smooth animation
-                                    className="w-max h-full p-4 font-semibold"
+                                    className="w-max    h-full p-3 font-semibold"
                                 >
                                     {children}
                                 </motion.div>
@@ -69,7 +69,7 @@ export const Menu = ({
     return (
         <nav
             onMouseLeave={() => setActive(null)} // resets the state
-            className="relative rounded-full boder border-transparent dark:bg-black dark:border-white/[0.2] bg-white shadow-input flex justify-center space-x-4 px-8 py-6 "
+            className=" shadow-input flex justify-center items-center space-x-4 px-8 py-6 "
         >
             {children}
         </nav>
@@ -78,7 +78,6 @@ export const Menu = ({
 
 export const ProductItem = ({
     title,
-    description,
     href,
     src,
 }: {
@@ -91,18 +90,15 @@ export const ProductItem = ({
         <Link href={href} className="flex space-x-2">
             <img
                 src={src}
-                width={140}
-                height={70}
+
                 alt={title}
-                className="flex-shrink-0 rounded-md shadow-2xl"
+                className="flex-shrink-0 rounded-md w-20 h-20 shadow-2xl"
             />
             <div>
-                <h4 className="text-xl font-bold mb-1 text-black dark:text-white">
+                <h4 className="text-xl font-bold mb-1 max-w-[13rem] text-black dark:text-white">
                     {title}
                 </h4>
-                <p className="text-neutral-700 text-sm max-w-[10rem] dark:text-neutral-300">
-                    {description}
-                </p>
+
             </div>
         </Link>
     );

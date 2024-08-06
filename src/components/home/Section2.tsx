@@ -53,6 +53,27 @@ export const campaigns = [
         link: "https://youtube.com/moviereviews",
         thumbnail: "https://cdn.movieguide.org/wp-content/uploads/2019/12/Discover1280x720.jpg",
     },
+    {
+        title: "Gaming World",
+        link: "https://youtube.com/gamingworld",
+        thumbnail: "https://images.inc.com/uploaded_files/image/1920x1080/getty_850493746_345788.jpg",
+    },
+    {
+        title: "Music Covers",
+        link: "https://youtube.com/musiccovers",
+        thumbnail: "https://cdn-amz.woka.io/images/I/81zEBs-a14L.jpg",
+    },
+
+    {
+        title: "Educational Content",
+        link: "https://youtube.com/educationalcontent",
+        thumbnail: "https://cdn-nyt-prd.nytlicensing.com/media/images/educationalcontent.jpg",
+    },
+    {
+        title: "Movie Reviews",
+        link: "https://youtube.com/moviereviews",
+        thumbnail: "https://cdn.movieguide.org/wp-content/uploads/2019/12/Discover1280x720.jpg",
+    },
 
 
 

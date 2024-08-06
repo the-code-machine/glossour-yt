@@ -35,11 +35,11 @@ const FuzzyOverlay = () => {
 
 const Content = () => {
     return (
-        <div className="relative grid h-screen place-content-center space-y-6 bg-neutral-950 p-8">
-            <p className="text-center text-6xl font-black text-neutral-50">
-                Promote Your Music on <span className=" text-[#FF0000]">YouTube</span>
+        <div className="relative grid h-screen place-content-center space-y-6 bg-black p-8">
+            <p className="text-center sm:text-6xl text-5xl font-black text-neutral-50">
+                Promote Your Music on <span className="  text-red-primary">YouTube</span>
             </p>
-            <p className="text-center  text-neutral-400">
+            <p className="text-center sm:text-lg text-sm  text-neutral-400">
                 Boost your visibility and grow your audience with our tailored digital marketing services for YouTube artists.
             </p>
             <div className="flex items-center justify-center gap-3">

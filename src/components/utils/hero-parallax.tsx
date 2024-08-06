@@ -68,7 +68,7 @@ export const HeroParallax = ({
                 }}
                 className=""
             >
-                <motion.div className="flex flex-row-reverse space-x-reverse space-x-20 mb-20">
+                <motion.div className="flex flex-row-reverse space-x-reverse md:space-x-20 space-x-10 mb-20">
                     {firstRow.map((campaign) => (
                         <CampaignCard
                             campaign={campaign}
@@ -77,7 +77,7 @@ export const HeroParallax = ({
                         />
                     ))}
                 </motion.div>
-                <motion.div className="flex flex-row  mb-20 space-x-20 ">
+                <motion.div className="flex flex-row  mb-20 md:space-x-20 space-x-10 ">
                     {secondRow.map((campaign) => (
                         <CampaignCard
                             campaign={campaign}
@@ -86,7 +86,7 @@ export const HeroParallax = ({
                         />
                     ))}
                 </motion.div>
-                <motion.div className="flex flex-row-reverse space-x-reverse space-x-20">
+                <motion.div className="flex flex-row-reverse space-x-reverse md:space-x-20 space-x-10">
                     {thirdRow.map((campaign) => (
                         <CampaignCard
                             campaign={campaign}
@@ -103,7 +103,7 @@ export const HeroParallax = ({
 export const Header = () => {
     return (
         <div className="max-w-7xl relative mx-auto py-20 md:py-40 px-4 w-full  left-0 top-0">
-            <h1 className="text-2xl md:text-7xl font-bold dark:text-white">
+            <h1 className="text-4xl md:text-7xl font-bold dark:text-white">
                 Elevate Your YouTube Presence
             </h1>
             <p className="max-w-2xl text-base md:text-xl mt-8 dark:text-neutral-200">
@@ -133,7 +133,7 @@ export const CampaignCard = ({
                 y: -20,
             }}
             key={campaign.title}
-            className="group/campaign h-96 w-[30rem] relative flex-shrink-0"
+            className="group/campaign md:h-96 md:w-[30rem] h-60 w-[20rem] relative flex-shrink-0"
         >
             <Link
                 href={campaign.link}
