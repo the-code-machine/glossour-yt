@@ -173,6 +173,7 @@ export function PlaceholdersAndVanishInput({
         e.preventDefault();
         vanishAndSubmit();
         onSubmit && onSubmit(e);
+
     };
     return (
         <form

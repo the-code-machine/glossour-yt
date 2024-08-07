@@ -62,7 +62,7 @@ const innerServicesData: Record<ServiceKeys, innerServices[]> =
             heading: 'YouTube Views',
             innerHeading: 'Get More Views',
             description: 'Increase your YouTube views significantly with our targeted promotion services. Our strategies are designed to enhance your visibility on the platform, attract a larger audience, and improve your channel’s overall performance. Leverage our expertise to gain more views and drive higher engagement for your content.',
-            buttonText: 'Learn More',
+            buttonText: '1m+ Views',
             color: '#FF0000',
             link: '/services/youtube-views'
         },
@@ -72,9 +72,9 @@ const innerServicesData: Record<ServiceKeys, innerServices[]> =
             heading: 'YouTube Likes',
             innerHeading: 'Get More Likes',
             description: 'Boost your video likes to enhance engagement and credibility. Our promotion services are tailored to increase likes on your videos, which helps in building a more engaged audience. More likes not only improve your video’s ranking but also contribute to greater viewer trust and interaction.',
-            buttonText: 'Learn More',
+            buttonText: 'Get 100k+ Likes',
             color: '#FF0000',
-            link: '/services/youtube-likes'
+            link: '/checkout/youtube-likes'
         },
         {
             imgUrl: '/videos/yt-3.mp4',
@@ -84,7 +84,7 @@ const innerServicesData: Record<ServiceKeys, innerServices[]> =
             description: 'Attract more followers to your YouTube channel with our specialized growth strategies. Our services focus on organic growth, ensuring you gain followers who are genuinely interested in your content. A larger follower base enhances your channel’s authority and reach.',
             buttonText: 'Learn More',
             color: '#FF0000',
-            link: '/services/youtube-followers'
+            link: '/checkout/youtube-followers'
         },
         {
             imgUrl: '/videos/yt-4.mp4',
@@ -94,7 +94,7 @@ const innerServicesData: Record<ServiceKeys, innerServices[]> =
             description: 'Promote your YouTube reels effectively to reach a wider audience. Our promotion services are designed to increase the visibility of your reels, helping you gain more exposure and attract new viewers. Stand out and make your reels go viral with our targeted strategies.',
             buttonText: 'Learn More',
             color: '#FF0000',
-            link: '/services/reel-promotion'
+            link: '/checkout/reel-promotion'
         },
         {
             imgUrl: '/videos/yt-5.mp4',
@@ -104,7 +104,7 @@ const innerServicesData: Record<ServiceKeys, innerServices[]> =
             description: 'Distribute your music press release to industry insiders and media outlets with our expert services. Gain recognition and increase your chances of getting noticed in the music industry. Our distribution network ensures your press release reaches key players and potential fans.',
             buttonText: 'Learn More',
             color: '#FF0000',
-            link: '/services/music-press-release'
+            link: '/checkout/music-press-release'
         }
     ]
     ,

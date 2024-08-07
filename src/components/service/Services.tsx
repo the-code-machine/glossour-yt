@@ -71,7 +71,7 @@ const StickyImage = ({ imgUrl }: { imgUrl: string }) => {
                 autoPlay
                 loop
                 muted
-                className="absolute inset-0 w-full h-full object-cover"
+                className="absolute inset-0 w-full h-full object-cover object-center"
             />
             <motion.div
                 className="absolute inset-0 bg-neutral-950/70"
@@ -111,12 +111,12 @@ const OverlayCopy = ({ subheading, heading }: { subheading: string, heading: str
 };
 
 export const Content = ({ heading, description, buttonText, link, color }: { heading: string, description: string, buttonText: string, link: string, color: string }) => {
-    return <div className="mx-auto grid max-w-5xl grid-cols-1 gap-8 px-4 pb-24 pt-12 md:grid-cols-12">
+    return <div className="mx-auto grid w-full md:px-24  grid-cols-1 gap-8 px-4 pb-24 pt-12 md:grid-cols-12">
         <h2 className={`col-span-1 text-[${color}] text-3xl font-bold md:col-span-4   `}>
             {heading}
         </h2>
-        <div className="col-span-1 md:col-span-8">
-            <p className="mb-10 text-xl text-neutral-600 md:text-2xl">
+        <div className="col-span-1 md:col-span-8 md:border-l-2 md:pl-8">
+            <p className="mb-10 text-xl text-neutral-600 md:text-2xl text-justify">
                 {description}
             </p>
             <Link href={link} className={`w-full rounded bg-[${color}] px-6  py-3 text-xl text-white transition-colors hover:bg-neutral-700 md:w-fit`}>

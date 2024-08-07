@@ -2,8 +2,10 @@
 
 import React from 'react';
 import { PlaceholdersAndVanishInput } from "../utils/placeholders-and-vanish-input";
+import axios from 'axios';
 
-export function PlaceholdersAndVanishInputDemo() {
+export function PlaceholdersAndVanishInputDemo({ setPost, setLoader }: { setPost: React.Dispatch<React.SetStateAction<Array<any>>>, setLoader: React.Dispatch<React.SetStateAction<boolean>> }) {
+    const [value, setValue] = React.useState("");
     const placeholders = [
         "What's the first rule of Fight Club?",
         "Who is Tyler Durden?",
@@ -13,11 +15,14 @@ export function PlaceholdersAndVanishInputDemo() {
     ];
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        console.log(e.target.value);
+        setValue(e.target.value);
     };
-    const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        setLoader(true);
         e.preventDefault();
-        console.log("submitted");
+        const response = axios.post('/api/youtube-details', { url: value });
+        setPost((await response).data);
+        setLoader(false);
     };
 
     return (
