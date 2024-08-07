@@ -3,20 +3,41 @@ import React, { useEffect, useRef, useState } from "react";
 import { HoveredLink, Menu, MenuItem, ProductItem } from "./utils/navbar-menu";
 import { cn } from "./utils/cn";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { FaBars } from "react-icons/fa";
+import { usePathname } from "next/navigation";
 
 function Navbar({ className }: { className?: string }) {
     const [active, setActive] = useState<string | null>(null);
-    const [isOpen, setIsOpen] = useState(false);
-    const pathname = usePathname()
     const [active1, setActive1] = useState(false)
+    const [navbarColor, setNavbarColor] = useState("bg-white  text-black");
+    const pathname = usePathname();
     const [activeDropdown, setActiveDropdown] = useState({
 
         pricing: false,
         services: false,
     });
+    useEffect(() => {
+        const whiteBgDivs = document.querySelectorAll('.bg-white');
 
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        setNavbarColor("bg-black  text-white");
+                    } else {
+                        setNavbarColor("bg-white text-black");
+                    }
+                });
+            },
+            { threshold: 0.1 }
+        );
+
+        whiteBgDivs.forEach((div) => observer.observe(div));
+
+        return () => {
+            whiteBgDivs.forEach((div) => observer.unobserve(div));
+        };
+    }, [pathname]);
     type DropdownKeys = keyof typeof activeDropdown;
 
     const handleDropdownToggle = (dropdown: DropdownKeys) => {
@@ -41,19 +62,21 @@ function Navbar({ className }: { className?: string }) {
             document.removeEventListener('mousedown', handleClickOutside);
         };
     }, [navbarRef]);
+
+
     return (
         <>
             <div
-                className={cn("fixed top-5 inset-x-0 md:max-w-5xl bg-white  items-center  justify-between  rounded-full md:px-10 px-6 boder z-[1000] border-transparent dark:bg-black dark:border-white/[0.2]  shadow-input  md:mx-auto mx-4 ", className)}
+                className={cn(` absolute top-5 inset-x-0 md:max-w-5xl  items-center  justify-between  rounded-full md:px-10 px-6 boder z-[1000] border-transparent dark:bg-black dark:border-white/[0.2]  shadow-input  md:mx-auto mx-4  ${navbarColor}`, className)}
             >       <div className="sm:flex hidden  justify-between items-center">
                     <Link href={'/'} className=" text-xl text-red-primary font-bold">Glossour</Link>
                     <Menu setActive={setActive}>
 
                         <MenuItem setActive={setActive} active={active} item="Services">
                             <div className="flex flex-col space-y-4 text-sm">
-                                <HoveredLink href="/youtube-promotion">YouTube Promotion</HoveredLink>
-                                <HoveredLink href="/spotify-promotion">Spotify Promotion</HoveredLink>
-                                <HoveredLink href="/instagram-promotion">Instagram Promotion</HoveredLink>
+                                <HoveredLink href="/service/youtube-promotion">YouTube Promotion</HoveredLink>
+                                <HoveredLink href="/service/spotify-promotion">Spotify Promotion</HoveredLink>
+                                <HoveredLink href="/service/instagram-promotion">Instagram Promotion</HoveredLink>
 
                             </div>
                         </MenuItem>
@@ -136,9 +159,9 @@ function Navbar({ className }: { className?: string }) {
                         </div>
 
                         <ul className={`overflow-hidden transition-all duration-300 text-sm   px-3 ${activeDropdown.services ? 'max-h-screen' : 'max-h-0'}`}>
-                            <Link href={'/youtube-promotion'}><li className='py-1'>YouTube Promotion</li></Link>
-                            <Link href={'/spotify-promotion'}><li className='py-1'>Spotify Promotion</li></Link>
-                            <Link href={'/instagram-promotion'}><li className='pt-1 pb-3'>Instagram Promotion</li></Link>
+                            <Link href={'/service/youtube-promotion'}><li className='py-1'>YouTube Promotion</li></Link>
+                            <Link href={'/service/spotify-promotion'}><li className='py-1'>Spotify Promotion</li></Link>
+                            <Link href={'/service/instagram-promotion'}><li className='pt-1 pb-3'>Instagram Promotion</li></Link>
                         </ul>
                     </div>
 

@@ -19,7 +19,7 @@ export function Footer() {
                         placeholder="Enter your email"
                         className="rounded-lg border border-neutral-800 focus:ring-2 p-3 focus:ring-white w-full relative z-10 mt-4 bg-neutral-950 text-white placeholder:text-neutral-700"
                     />
-                    <button className="mt-1 bg-instagram-gradient text-white py-2 px-6 rounded-lg focus:ring-2 focus:ring-white">
+                    <button className=" mt-4 bg-instagram-gradient text-white py-2 px-6 rounded-lg focus:ring-2 focus:ring-white">
                         Subscribe
                     </button></div>
             </div>
