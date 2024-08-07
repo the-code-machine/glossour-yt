@@ -5,7 +5,7 @@ import React from 'react';
 interface pageProps {
 }
 
-const page: React.FC<pageProps> = ({ }) => {
+const Page: React.FC<pageProps> = ({ }) => {
     const packageName = usePathname().split('/')[2];
 
     return (
@@ -16,4 +16,4 @@ const page: React.FC<pageProps> = ({ }) => {
         </div>
     );
 };
-export default page;
+export default Page;
