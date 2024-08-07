@@ -109,7 +109,7 @@ function Navbar({ className }: { className?: string }) {
 
                 </div>
             </div>
-            <div ref={navbarRef} className={`bg-white w-4/5 fixed top-0 md:hidden left-0 h-screen p-3 flex justify-between flex-col z-[110] transition-all duration-300 ${active1 ? 'translate-x-0' : '-translate-x-full'}`}>
+            <div ref={navbarRef} className={`bg-white w-4/5 fixed top-0 md:hidden left-0 h-screen p-3 flex justify-between flex-col z-[1001] transition-all duration-300 ${active1 ? 'translate-x-0' : '-translate-x-full'}`}>
                 <div className='flex flex-col'>
                     <Link href={'/'} className=" text-3xl text-red-primary font-bold">Glossour</Link>
 
