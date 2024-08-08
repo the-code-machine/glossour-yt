@@ -15,7 +15,7 @@ const Section5: React.FC<Section5Props> = ({ }) => {
         <div className=' md:px-20 py-20 bg-red-primary w-full text-white flex flex-col justify-center items-center'>
             <PlaceholdersAndVanishInputDemo setPost={setPost} setLoader={setLoader} />
 
-            {loader && <div className='text-2xl'>Loading...</div>}
+            {loader && <div className='text-2xl mt-5'>Loading...</div>}
             {post && <ExpandableCardDemo cards={post} />}
         </div>
     );

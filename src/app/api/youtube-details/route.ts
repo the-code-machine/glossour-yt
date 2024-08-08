@@ -19,6 +19,16 @@ interface RequestBody {
   url: string;
 }
 
+// Function to format numbers into k, m, etc.
+const formatNumber = (num: number) => {
+  if (num >= 1_000_000) {
+    return (num / 1_000_000).toFixed(1) + "m";
+  } else if (num >= 1_000) {
+    return (num / 1_000).toFixed(1) + "k";
+  }
+  return num.toString();
+};
+
 export async function POST(req: NextRequest) {
   try {
     const body: RequestBody = await req.json();
@@ -52,17 +62,33 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Video not found" }, { status: 404 });
     }
 
+    // Function to trim the description to 30 words
+    const trimDescription = (description: string) => {
+      return (
+        description.split(" ").slice(0, 30).join(" ") +
+        (description.split(" ").length > 30 ? "..." : "")
+      );
+    };
+
     const videoDetails: VideoDetails = {
       ctaLink: body.url,
       title: videoData.snippet.title ?? undefined,
-      description: videoData.snippet.description ?? undefined,
+      description: videoData.snippet.description
+        ? trimDescription(videoData.snippet.description)
+        : undefined,
       src: videoData.snippet.thumbnails.high.url ?? undefined,
       uploadDate: videoData.snippet.publishedAt ?? undefined,
       author: videoData.snippet.channelTitle ?? undefined,
-      views: videoData.statistics.viewCount ?? undefined,
-      likes: videoData.statistics.likeCount ?? undefined,
+      views: videoData.statistics.viewCount
+        ? formatNumber(parseInt(videoData.statistics.viewCount))
+        : undefined,
+      likes: videoData.statistics.likeCount
+        ? formatNumber(parseInt(videoData.statistics.likeCount))
+        : undefined,
       subscribers: undefined, // YouTube API doesn't provide subscribers count with video details, need a separate request for the channel
-      content: videoData.snippet.description ?? undefined,
+      content: videoData.snippet.description
+        ? trimDescription(videoData.snippet.description)
+        : undefined,
     };
 
     return NextResponse.json([videoDetails]);

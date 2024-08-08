@@ -29,7 +29,7 @@ export function PlaceholdersAndVanishInputDemo({ setPost, setLoader }: { setPost
     };
 
     return (
-        <div className="md:h-[30rem] flex flex-col justify-center items-center px-4">
+        <div className=" flex flex-col justify-center items-center px-4">
             <h2 className="mb-4 text-2xl text-center sm:text-5xl font-extrabold text-black md:w-3/4 w-full">
                 Get Real-Time Analysis of Your YouTube Video
             </h2>
