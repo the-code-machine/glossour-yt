@@ -21,6 +21,9 @@ export function PlaceholdersAndVanishInputDemo({ setPost, setLoader }: { setPost
         setLoader(true);
         e.preventDefault();
         const response = axios.post('/api/youtube-details', { url: value });
+        console.log(value, "url");
+        console.log((await response).data, "response");
+
         setPost((await response).data);
         setLoader(false);
     };

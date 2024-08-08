@@ -55,7 +55,8 @@ export async function POST(req: NextRequest) {
       content: description,
     };
 
-    return NextResponse.json([videoDetails]); // Return as an array
+    console.log(videoDetails);
+    return NextResponse.json([videoDetails]);
   } catch (error) {
     console.error(error);
     return NextResponse.json(
