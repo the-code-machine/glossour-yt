@@ -1,6 +1,6 @@
 // app/api/youtube-details/route.ts
 import { NextRequest, NextResponse } from "next/server";
-import puppeteer from "puppeteer";
+import axios from "axios";
 
 interface VideoDetails {
   title: string | undefined;
@@ -27,54 +27,43 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "URL is required" }, { status: 400 });
     }
 
-    // Launch Puppeteer
-    const browser = await puppeteer.launch();
-    const page = await browser.newPage();
-    await page.goto(body.url, { waitUntil: "networkidle2" });
+    // Extract video ID from the YouTube URL
+    const videoIdMatch = body.url.match(
+      /(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/
+    );
+    if (!videoIdMatch) {
+      return NextResponse.json(
+        { error: "Invalid YouTube URL" },
+        { status: 400 }
+      );
+    }
+    const videoId = videoIdMatch[1];
 
-    // Extract video details using Puppeteer
-    const videoDetails: VideoDetails = await page.evaluate(() => {
-      const title =
-        document.querySelector('meta[name="title"]')?.getAttribute("content") ||
-        document.title;
-      const description = document
-        .querySelector('meta[name="description"]')
-        ?.getAttribute("content");
-      const thumbnail = document
-        .querySelector('meta[property="og:image"]')
-        ?.getAttribute("content");
-      const uploadDate = document
-        .querySelector('meta[itemprop="uploadDate"]')
-        ?.getAttribute("content");
-      const author = document
-        .querySelector('meta[itemprop="author"]')
-        ?.getAttribute("content");
-      const views = document
-        .querySelector('meta[itemprop="interactionCount"]')
-        ?.getAttribute("content");
+    // YouTube API Key (replace with your actual API key)
+    const apiKey = process.env.YOUTUBE_API_KEY; // Store your API key in an environment variable
 
-      const likes = document
-        .querySelector('button[aria-label*="like this video"]')
-        ?.textContent?.trim();
-      const subscribers = document
-        .querySelector("yt-formatted-string#subscriber-count")
-        ?.textContent?.trim();
+    // YouTube Data API endpoint
+    const url = `https://www.googleapis.com/youtube/v3/videos?part=snippet,contentDetails,statistics&id=${videoId}&key=${apiKey}`;
 
-      return {
-        ctaLink: window.location.href,
-        title: title ?? undefined,
-        description: description ?? undefined,
-        src: thumbnail ?? undefined,
-        uploadDate: uploadDate ?? undefined,
-        author: author ?? undefined,
-        views: views ?? undefined,
-        likes: likes ?? undefined,
-        subscribers: subscribers ?? undefined,
-        content: description ?? undefined,
-      };
-    });
+    const response = await axios.get(url);
+    const videoData = response.data.items[0];
 
-    await browser.close();
+    if (!videoData) {
+      return NextResponse.json({ error: "Video not found" }, { status: 404 });
+    }
+
+    const videoDetails: VideoDetails = {
+      ctaLink: body.url,
+      title: videoData.snippet.title ?? undefined,
+      description: videoData.snippet.description ?? undefined,
+      src: videoData.snippet.thumbnails.high.url ?? undefined,
+      uploadDate: videoData.snippet.publishedAt ?? undefined,
+      author: videoData.snippet.channelTitle ?? undefined,
+      views: videoData.statistics.viewCount ?? undefined,
+      likes: videoData.statistics.likeCount ?? undefined,
+      subscribers: undefined, // YouTube API doesn't provide subscribers count with video details, need a separate request for the channel
+      content: videoData.snippet.description ?? undefined,
+    };
 
     return NextResponse.json([videoDetails]);
   } catch (error) {
