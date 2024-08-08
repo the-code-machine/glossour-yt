@@ -1,7 +1,6 @@
 // app/api/youtube-details/route.ts
 import { NextRequest, NextResponse } from "next/server";
-import axios from "axios";
-import cheerio from "cheerio";
+import puppeteer from "puppeteer";
 
 interface VideoDetails {
   title: string | undefined;
@@ -28,34 +27,55 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "URL is required" }, { status: 400 });
     }
 
-    const { data } = await axios.get(body.url);
-    const $ = cheerio.load(data);
+    // Launch Puppeteer
+    const browser = await puppeteer.launch();
+    const page = await browser.newPage();
+    await page.goto(body.url, { waitUntil: "networkidle2" });
 
-    const title = $('meta[name="title"]').attr("content") || $("title").text();
-    const description = $('meta[name="description"]').attr("content");
-    const thumbnail = $('meta[property="og:image"]').attr("content");
-    const uploadDate = $('meta[itemprop="uploadDate"]').attr("content");
-    const author = $('meta[itemprop="author"]').attr("content");
-    const views = $('meta[itemprop="interactionCount"]').attr("content");
+    // Extract video details using Puppeteer
+    const videoDetails: VideoDetails = await page.evaluate(() => {
+      const title =
+        document.querySelector('meta[name="title"]')?.getAttribute("content") ||
+        document.title;
+      const description = document
+        .querySelector('meta[name="description"]')
+        ?.getAttribute("content");
+      const thumbnail = document
+        .querySelector('meta[property="og:image"]')
+        ?.getAttribute("content");
+      const uploadDate = document
+        .querySelector('meta[itemprop="uploadDate"]')
+        ?.getAttribute("content");
+      const author = document
+        .querySelector('meta[itemprop="author"]')
+        ?.getAttribute("content");
+      const views = document
+        .querySelector('meta[itemprop="interactionCount"]')
+        ?.getAttribute("content");
 
-    // Attempting to scrape likes and subscribers (this is fragile and might break)
-    const likes = $('button[aria-label*="like this video"]').text().trim();
-    const subscribers = $("yt-formatted-string#subscriber-count").text().trim();
+      const likes = document
+        .querySelector('button[aria-label*="like this video"]')
+        ?.textContent?.trim();
+      const subscribers = document
+        .querySelector("yt-formatted-string#subscriber-count")
+        ?.textContent?.trim();
 
-    const videoDetails: VideoDetails = {
-      ctaLink: body.url,
-      title,
-      description,
-      src: thumbnail,
-      uploadDate,
-      author,
-      views,
-      likes,
-      subscribers,
-      content: description,
-    };
+      return {
+        ctaLink: window.location.href,
+        title: title ?? undefined,
+        description: description ?? undefined,
+        src: thumbnail ?? undefined,
+        uploadDate: uploadDate ?? undefined,
+        author: author ?? undefined,
+        views: views ?? undefined,
+        likes: likes ?? undefined,
+        subscribers: subscribers ?? undefined,
+        content: description ?? undefined,
+      };
+    });
 
-    console.log(videoDetails);
+    await browser.close();
+
     return NextResponse.json([videoDetails]);
   } catch (error) {
     console.error(error);
