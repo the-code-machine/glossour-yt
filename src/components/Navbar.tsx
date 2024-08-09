@@ -67,20 +67,29 @@ function Navbar({ className }: { className?: string }) {
     return (
         <>
             <div
-                className={cn(` absolute top-5 inset-x-0 md:max-w-5xl  items-center  justify-between  rounded-full md:px-10 px-6 boder z-[1000] border-transparent dark:bg-black dark:border-white/[0.2]  shadow-input  md:mx-auto mx-4  ${navbarColor}`, className)}
+                className={cn(` absolute top-5 inset-x-0 md:max-w-5xl  items-center  justify-between  rounded-full md:px-10 px-6 boder z-[1000] border-transparent dark:bg-black dark:border-white/[0.2]  shadow-input  md:mx-auto mx-4   bg-white`, className)}
             >       <div className="sm:flex hidden  justify-between items-center">
                     <Link href={'/'} className=" text-xl text-red-primary font-bold">Glossour</Link>
                     <Menu setActive={setActive}>
 
-                        <MenuItem setActive={setActive} active={active} item="Services">
+                        <MenuItem setActive={setActive} active={active} item="Youtube ">
                             <div className="flex flex-col space-y-4 text-sm">
-                                <HoveredLink href="/service/youtube-promotion">YouTube Promotion</HoveredLink>
-                                <HoveredLink href="/service/spotify-promotion">Spotify Promotion</HoveredLink>
-                                <HoveredLink href="/service/instagram-promotion">Instagram Promotion</HoveredLink>
+                                <HoveredLink href="/service/youtube-promotion">Youtube Music Promotion</HoveredLink>
+                                <HoveredLink href="/service/youtube-promotion">Youtube Shorts Promotion</HoveredLink>
+                                <HoveredLink href="/service/youtube-promotion">Youtube Influencer Promotion</HoveredLink>
+                                <HoveredLink href="/service/youtube-promotion">Music Promotion Press Release</HoveredLink>
 
                             </div>
                         </MenuItem>
-                        <MenuItem setActive={setActive} active={active} item="Case Studies">
+                        <MenuItem setActive={setActive} active={active} item="Instagram ">
+                            <div className="flex flex-col space-y-4 text-sm">
+                                <HoveredLink href="/service/instagram-promotion">Instagram Reels Promotion</HoveredLink>
+                                <HoveredLink href="/service/instagram-promotion">Instagram Influencer Promotion</HoveredLink>
+                                <HoveredLink href="/service/instagram-promotion">Instagram Promotion Press Release</HoveredLink>
+
+                            </div>
+                        </MenuItem>
+                        {/* <MenuItem setActive={setActive} active={active} item="Case Studies">
                             <div className="text-sm grid md:grid-cols-2 grid-cols-1 gap-3  p-4">
                                 <ProductItem
                                     title="Music Video Campaign"
@@ -107,13 +116,14 @@ function Navbar({ className }: { className?: string }) {
                                     description="Enhanced brand recognition and reach."
                                 />
                             </div>
-                        </MenuItem>
+                        </MenuItem> */}
                         <MenuItem setActive={setActive} active={active} item="Pricing">
                             <div className="flex flex-col space-y-4 text-sm">
-                                <HoveredLink href="/starter-plan">Starter Plan</HoveredLink>
+                                <HoveredLink href="/youtube-pricing">Youtube Pricing</HoveredLink>
 
-                                < HoveredLink href="/business-plan">Business Plan</ HoveredLink>
-                                <HoveredLink href="/enterprise-plan">Enterprise Plan</HoveredLink>
+                                < HoveredLink href="/instagram-pricing">Instagram Pricing</ HoveredLink>
+                                <HoveredLink href="/spotify-pricing">Spotify Pricing</HoveredLink>
+                                <HoveredLink href="/press-release-pricing">Press Release Pricing</HoveredLink>
                             </div>
                         </MenuItem>
                     </Menu>

@@ -7,11 +7,8 @@ import axios from 'axios';
 export function PlaceholdersAndVanishInputDemo({ setPost, setLoader }: { setPost: React.Dispatch<React.SetStateAction<Array<any>>>, setLoader: React.Dispatch<React.SetStateAction<boolean>> }) {
     const [value, setValue] = React.useState("");
     const placeholders = [
-        "What's the first rule of Fight Club?",
-        "Who is Tyler Durden?",
-        "Where is Andrew Laeddis Hiding?",
-        "Write a Javascript method to reverse a string",
-        "How to assemble your own PC?",
+        "Enter the YouTube video link...",
+        "Enter the YouTube channel name...",
     ];
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -20,7 +17,7 @@ export function PlaceholdersAndVanishInputDemo({ setPost, setLoader }: { setPost
     const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         setLoader(true);
         e.preventDefault();
-        const response = axios.post('/api/youtube-details', { url: value });
+        const response = axios.post('/api/youtube-details', { input: value });
         console.log(value, "url");
         console.log((await response).data, "response");
 

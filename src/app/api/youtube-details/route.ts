@@ -1,4 +1,3 @@
-// app/api/youtube-details/route.ts
 import { NextRequest, NextResponse } from "next/server";
 import axios from "axios";
 
@@ -16,7 +15,7 @@ interface VideoDetails {
 }
 
 interface RequestBody {
-  url: string;
+  input: string;
 }
 
 // Function to format numbers into k, m, etc.
@@ -29,49 +28,73 @@ const formatNumber = (num: number) => {
   return num.toString();
 };
 
+// Function to trim the description to 30 words
+const trimDescription = (description: string) => {
+  return (
+    description.split(" ").slice(0, 30).join(" ") +
+    (description.split(" ").length > 30 ? "..." : "")
+  );
+};
+
 export async function POST(req: NextRequest) {
   try {
     const body: RequestBody = await req.json();
 
-    if (!body.url) {
-      return NextResponse.json({ error: "URL is required" }, { status: 400 });
+    if (!body.input) {
+      return NextResponse.json({ error: "Input is required" }, { status: 400 });
     }
 
-    // Extract video ID from the YouTube URL
-    const videoIdMatch = body.url.match(
-      /(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/
-    );
-    if (!videoIdMatch) {
-      return NextResponse.json(
-        { error: "Invalid YouTube URL" },
-        { status: 400 }
-      );
-    }
-    const videoId = videoIdMatch[1];
-
-    // YouTube API Key (replace with your actual API key)
     const apiKey = process.env.YOUTUBE_API_KEY; // Store your API key in an environment variable
 
-    // YouTube Data API endpoint
-    const url = `https://www.googleapis.com/youtube/v3/videos?part=snippet,contentDetails,statistics&id=${videoId}&key=${apiKey}`;
+    let videoId: string | null = null;
 
-    const response = await axios.get(url);
-    const videoData = response.data.items[0];
+    // Check if input is a YouTube URL
+    const videoIdMatch = body.input.match(
+      /(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/
+    );
+
+    if (videoIdMatch) {
+      // If input is a URL, extract the video ID
+      videoId = videoIdMatch[1];
+    } else {
+      // If input is not a URL, treat it as a channel name
+      const searchUrl = `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&type=channel&q=${encodeURIComponent(
+        body.input
+      )}&key=${apiKey}`;
+      const searchResponse = await axios.get(searchUrl);
+      const channelId = searchResponse.data.items[0]?.id?.channelId;
+
+      if (!channelId) {
+        return NextResponse.json(
+          { error: "Channel not found" },
+          { status: 404 }
+        );
+      }
+
+      // Fetch the latest video from the channel
+      const videosUrl = `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channelId}&maxResults=1&order=date&type=video&key=${apiKey}`;
+      const videosResponse = await axios.get(videosUrl);
+      videoId = videosResponse.data.items[0]?.id?.videoId;
+
+      if (!videoId) {
+        return NextResponse.json(
+          { error: "No videos found for this channel" },
+          { status: 404 }
+        );
+      }
+    }
+
+    // Fetch video details using the video ID
+    const videoDetailsUrl = `https://www.googleapis.com/youtube/v3/videos?part=snippet,contentDetails,statistics&id=${videoId}&key=${apiKey}`;
+    const videoResponse = await axios.get(videoDetailsUrl);
+    const videoData = videoResponse.data.items[0];
 
     if (!videoData) {
       return NextResponse.json({ error: "Video not found" }, { status: 404 });
     }
 
-    // Function to trim the description to 30 words
-    const trimDescription = (description: string) => {
-      return (
-        description.split(" ").slice(0, 30).join(" ") +
-        (description.split(" ").length > 30 ? "..." : "")
-      );
-    };
-
     const videoDetails: VideoDetails = {
-      ctaLink: body.url,
+      ctaLink: `https://www.youtube.com/watch?v=${videoId}`,
       title: videoData.snippet.title ?? undefined,
       description: videoData.snippet.description
         ? trimDescription(videoData.snippet.description)

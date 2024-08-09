@@ -1,6 +1,6 @@
 'use client'
 import React from 'react';
-import { useState, useEffect, useRef } from 'react';
+import { useState } from 'react';
 import { PlaceholdersAndVanishInputDemo } from '../utils/search';
 import { ExpandableCardDemo } from '../utils/SerachPost';
 

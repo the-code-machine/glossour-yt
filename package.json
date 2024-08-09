@@ -13,6 +13,7 @@
     "cheerio": "^1.0.0-rc.12",
     "clsx": "^2.1.1",
     "framer-motion": "^11.2.14",
+    "mini-svg-data-uri": "^1.4.4",
     "next": "14.2.4",
     "puppeteer": "^23.0.1",
     "react": "^18",

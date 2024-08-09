@@ -5,7 +5,7 @@ import { InfiniteMovingCards } from "../utils/infinite-moving-cards";
 
 export function InfiniteMovingCardsDemo() {
     return (
-        <div className="h-[40rem] rounded-md flex flex-col antialiased bg-white dark:bg-black dark:bg-grid-white/[0.05] items-center justify-center relative overflow-hidden">
+        <div className="h-[40rem] rounded-md flex flex-col antialiased bg-white  dark:bg-grid-white/[0.05] items-center justify-center relative overflow-hidden">
             <div className='font-extrabold sm:text-6xl md:mb-5 mb-5 text-4xl text-center text-black'>
                 Customer <span className='bg-clip-text text-transparent bg-gradient-to-r from-[#F58529] via-[#DD2A7B] to-[#833AB4]'>Testimonials</span>
             </div>

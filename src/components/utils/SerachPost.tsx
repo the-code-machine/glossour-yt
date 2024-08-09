@@ -71,7 +71,7 @@ export function ExpandableCardDemo({ cards }: { cards: { title: string, src: str
             </AnimatePresence>
             <AnimatePresence>
                 {active && typeof active === "object" ? (
-                    <div className="fixed inset-0  grid place-items-center z-[100]">
+                    <div className="fixed inset-0  grid place-items-center z-[1000000]">
                         <motion.button
                             key={`button-${active.title}-${id}`}
                             layout
@@ -121,7 +121,7 @@ export function ExpandableCardDemo({ cards }: { cards: { title: string, src: str
                                             layoutId={`description-${active.description}-${id}`}
                                             className="text-neutral-600 dark:text-neutral-400"
                                         >
-                                            {active.description}
+                                            {active.description.slice(0, 100)}...
                                         </motion.p>
                                     </div>
 
@@ -146,7 +146,7 @@ export function ExpandableCardDemo({ cards }: { cards: { title: string, src: str
 
                                 src={card.src}
                                 alt={card.title}
-                                className=" w-full h-full rounded-lg object-cover  object-center"
+                                className=" w-full h-full md:w-32  rounded-lg object-cover  object-center"
                             />
                         </motion.div>
                         <div className="flex gap-4 flex-col   justify-start items-start">
@@ -162,7 +162,7 @@ export function ExpandableCardDemo({ cards }: { cards: { title: string, src: str
                                     layoutId={`description-${card.description}-${id}`}
                                     className="text-neutral-600 dark:text-neutral-400 text-center text-xs md:text-left"
                                 >
-                                    {card.description}
+                                    {card.description.slice(0, 100)}...
                                 </motion.p>
                             </div>
                             <div className=" flex gap-1 md:justify-start flex-wrap justify-center w-full items-center">
