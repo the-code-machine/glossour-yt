@@ -64,7 +64,7 @@ const innerServicesData: Record<ServiceKeys, innerServices[]> =
             description: 'Increase your YouTube views significantly with our targeted promotion services. Our strategies are designed to enhance your visibility on the platform, attract a larger audience, and improve your channel’s overall performance. Leverage our expertise to gain more views and drive higher engagement for your content.',
             buttonText: '1m+ Views',
             color: '#FF0000',
-            link: '/services/youtube-views'
+            link: '/checkout/youtube-views'
         },
         {
             imgUrl: '/videos/yt-2.mp4',
@@ -116,8 +116,8 @@ const innerServicesData: Record<ServiceKeys, innerServices[]> =
             innerHeading: 'Get More Streams',
             description: 'Enhance your Spotify streams with our specialized promotion services. We focus on increasing the number of streams for your tracks, helping you achieve greater visibility and reach on the platform. Our strategies are aimed at attracting more listeners and boosting your track’s performance.',
             buttonText: 'Learn More',
-            color: 'green-500',
-            link: '/services/spotify-streams'
+            color: '#1DD05D',
+            link: '/checkout/spotify-streams'
         },
         {
             imgUrl: 'path/to/image2.jpg',
@@ -126,8 +126,8 @@ const innerServicesData: Record<ServiceKeys, innerServices[]> =
             innerHeading: 'Gain More Followers',
             description: 'Grow your follower base on Spotify to boost your reach and credibility. Our services are designed to attract genuine followers who are interested in your music. A larger follower count enhances your presence on the platform and increases engagement with your tracks.',
             buttonText: 'Learn More',
-            color: 'blue-500',
-            link: '/services/spotify-followers'
+            color: '#1DD05D',
+            link: '/checkout/spotify-followers'
         },
         {
             imgUrl: 'path/to/image3.jpg',
@@ -136,8 +136,8 @@ const innerServicesData: Record<ServiceKeys, innerServices[]> =
             innerHeading: 'Get on Playlists',
             description: 'Feature your tracks on popular Spotify playlists with our expert placement services. Being on playlists can significantly increase your track’s exposure and attract a broader audience. Our network and strategies ensure that your music reaches influential playlist curators.',
             buttonText: 'Learn More',
-            color: 'purple-500',
-            link: '/services/spotify-playlist-placement'
+            color: '#1DD05D',
+            link: '/checkout/spotify-playlist-placement'
         },
         {
             imgUrl: 'path/to/image4.jpg',
@@ -146,8 +146,8 @@ const innerServicesData: Record<ServiceKeys, innerServices[]> =
             innerHeading: 'Music Press Release',
             description: 'Gain industry recognition by distributing your Spotify press release through our network. We help you reach media outlets and industry professionals to ensure your music gets the attention it deserves. Elevate your presence and make a mark in the music world.',
             buttonText: 'Learn More',
-            color: 'yellow-500',
-            link: '/services/spotify-press-release'
+            color: '#1DD05D',
+            link: '/checkout/spotify-press-release'
         },
         {
             imgUrl: 'path/to/image5.jpg',
@@ -156,8 +156,8 @@ const innerServicesData: Record<ServiceKeys, innerServices[]> =
             innerHeading: 'Increase Monthly Listeners',
             description: 'Boost your Spotify monthly listeners with our targeted promotion services. Our approach focuses on increasing the number of listeners each month, helping you build a steady and engaged audience. Enhance your music career with a growing listener base.',
             buttonText: 'Learn More',
-            color: 'red-500',
-            link: '/services/spotify-monthly-listeners'
+            color: '#1DD05D',
+            link: '/checkout/spotify-monthly-listeners'
         }
     ]
     ,
@@ -170,7 +170,7 @@ const innerServicesData: Record<ServiceKeys, innerServices[]> =
             description: 'Increase your Instagram followers with our expert services. We focus on growing your profile organically, attracting followers who are genuinely interested in your content. A larger follower base enhances your profile’s visibility and credibility on the platform.',
             buttonText: 'Learn More',
             color: 'blue-500',
-            link: '/services/instagram-followers'
+            link: '/checkout/instagram-followers'
         },
         {
             imgUrl: 'path/to/image2.jpg',
@@ -180,7 +180,7 @@ const innerServicesData: Record<ServiceKeys, innerServices[]> =
             description: 'Boost the number of likes on your Instagram posts to increase engagement and visibility. Our services are tailored to improve your post interactions, helping you gain more visibility and attract more engagement from your audience.',
             buttonText: 'Learn More',
             color: 'red-500',
-            link: '/services/instagram-likes'
+            link: '/checkout/instagram-likes'
         },
         {
             imgUrl: 'path/to/image3.jpg',
@@ -190,7 +190,7 @@ const innerServicesData: Record<ServiceKeys, innerServices[]> =
             description: 'Increase impressions on your Instagram posts with our targeted strategies. More impressions mean a broader audience and higher visibility for your content. We focus on improving your reach and ensuring your posts are seen by more users.',
             buttonText: 'Learn More',
             color: 'green-500',
-            link: '/services/instagram-impressions'
+            link: '/checkout/instagram-impressions'
         },
         {
             imgUrl: 'path/to/image4.jpg',
@@ -200,7 +200,7 @@ const innerServicesData: Record<ServiceKeys, innerServices[]> =
             description: 'Obtain the coveted blue tick on Instagram to gain credibility and recognition. Our services help you navigate the verification process, ensuring that your profile stands out and is verified for authenticity.',
             buttonText: 'Learn More',
             color: 'purple-500',
-            link: '/services/instagram-verification'
+            link: '/checkout/instagram-verification'
         },
         {
             imgUrl: 'path/to/image5.jpg',
@@ -210,7 +210,7 @@ const innerServicesData: Record<ServiceKeys, innerServices[]> =
             description: 'Boost the number of comments on your Instagram posts to enhance engagement. Our services are designed to increase interactions, helping you build a more active and engaged community around your content.',
             buttonText: 'Learn More',
             color: 'yellow-500',
-            link: '/services/instagram-comments'
+            link: '/checkout/instagram-comments'
         }
     ]
 

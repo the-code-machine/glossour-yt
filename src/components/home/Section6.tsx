@@ -20,21 +20,21 @@ const Section6: React.FC<Section6Props> = ({ }) => {
                     color='bg-red-primary'
                     description='Enhance your YouTube channel visibility and engagement with our specialized promotion services.'
                     price='₹6000'
-                    link='youtube-promotion'
+                    link='/checkout/youtube-promotion'
                 />
                 <Card
                     title='Spotify Promotion'
                     color='bg-green-primary'
                     description='Grow your Spotify audience and increase your streams with our targeted promotion strategies.'
                     price='₹10000'
-                    link='spotify-promotion'
+                    link='/checkout/spotify-promotion'
                 />
                 <Card
                     title='Instagram Promotion'
                     color='bg-instagram-gradient'
                     description='Boost your Instagram presence and reach a wider audience with our effective promotion techniques.'
                     price='₹12000'
-                    link='instagram-promotion'
+                    link='/checkout/instagram-promotion'
                 />
             </div>
         </div>
