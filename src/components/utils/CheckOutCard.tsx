@@ -5,6 +5,7 @@ interface Plan {
     name: string;
     desc: string;
     price: string
+    title: string
     src: string
     features: string[]
 }
@@ -20,7 +21,9 @@ export default ({ plans }: { plans: Plan[] }) => {
                     {
                         plans.map((item, idx) => (
                             <div key={idx} className={`relative flex-1 flex items-stretch flex-col mt-6 border-2 sm:mt-0 sm:rounded-xl sm:max-w-md ${item.isMostPop ? "bg-white border-red-primary border-x-0 sm:border-x-2" : "border-transparent"}`}>
-                                <div className='p-3 w-full'><img src={item.src} alt="" className=' w-full h-40 object-cover rounded-xl' /></div>
+                                <div className='p-3 w-full flex flex-col space-y-2'><img src={item.src} alt="" className=' w-full h-40 object-cover rounded-xl' />
+                                    <h1 className=' text-black text-lg font-semibold'>{item.title}</h1>
+                                </div>
                                 <div className="px-4 py-8 space-y-4 border-b border-gray-700 md:px-8">
                                     <span className='text-black font-medium'>
                                         {item.name}

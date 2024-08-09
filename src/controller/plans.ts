@@ -15,7 +15,8 @@ interface Plan {
   name: string;
   desc: string;
   price: number;
-  src: string;
+    src: string;
+    title: string;
   isMostPop: boolean;
   features: string[];
 }
@@ -44,7 +45,8 @@ export const generatePlans = (videoData: VideoDetails): Plan[] => {
       desc: `Boost your video with targeted promotion.`,
       price: basePlan,
       isMostPop: true,
-      src: videoData.src,
+          src: videoData.src,
+      title: videoData.title,
       features: [
         "50k+ views",
         "2500+ likes",
@@ -59,8 +61,10 @@ export const generatePlans = (videoData: VideoDetails): Plan[] => {
       name: "Pro",
       desc: `Increase visibility with enhanced promotion.`,
       price: proPlan,
-      isMostPop: true,
-      src: videoData.src,
+        isMostPop: true,
+      
+        src: videoData.src,
+        title: videoData.title,
       features: [
         "100k+ views",
         "5k+ likes",
@@ -78,7 +82,8 @@ export const generatePlans = (videoData: VideoDetails): Plan[] => {
       desc: `Maximize reach with premium promotion.`,
       price: premiumPlan,
       isMostPop: true,
-      src: videoData.src,
+        src: videoData.src,
+        title: videoData.title,
       features: [
         "1 million views",
         "50k likes",

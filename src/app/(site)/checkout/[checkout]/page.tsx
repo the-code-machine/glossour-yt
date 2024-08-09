@@ -43,12 +43,12 @@ function PlaceholdersAndVanishInputDemo({ setPost, setLoader }: { setPost: React
     };
 
     return (
-        <div className=" flex flex-col justify-center items-center px-4">
+        <div className="flex flex-col justify-center items-center px-4">
             <h2 className="mb-4 text-2xl text-center sm:text-5xl font-extrabold text-black md:w-3/4 w-full">
-                Get Real-Time Analysis of Your YouTube Video
+                Get Customized Pricing for Your YouTube Video Analysis
             </h2>
-            <p className="mb-5 sm:mb-10 text-center text-black max-w-2xl">
-                Use the search box below to find videos on YouTube and receive real-time analysis of the video content.
+            <p className="mb-5 sm:mb-10 text-center text-black md:text-sm text-xs max-w-2xl">
+                Our pricing is tailored to the specific attributes of your video, including its length, your location, and your subscriber count. Factors such as video duration and geographic adjustments are considered to provide a personalized and accurate quote.
             </p>
             <PlaceholdersAndVanishInput
                 placeholders={placeholders}
@@ -56,5 +56,6 @@ function PlaceholdersAndVanishInputDemo({ setPost, setLoader }: { setPost: React
                 onSubmit={onSubmit}
             />
         </div>
+
     );
 }
