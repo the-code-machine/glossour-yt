@@ -1,5 +1,5 @@
 'use client'
-import CheckOutCard from "@/components/utils/CheckOutCard";
+import { CheckOutCard } from "@/components/utils/CheckOutCard";
 import { PlaceholdersAndVanishInput } from "@/components/utils/placeholders-and-vanish-input";
 import axios from "axios";
 import React, { useState } from "react";

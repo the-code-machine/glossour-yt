@@ -10,7 +10,7 @@ interface Plan {
     features: string[]
 }
 
-export default ({ plans }: { plans: Plan[] }) => {
+export const CheckOutCard = ({ plans }: { plans: Plan[] }) => {
 
 
     return (
