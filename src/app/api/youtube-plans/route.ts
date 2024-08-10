@@ -10,6 +10,7 @@ interface VideoDetails {
   author: string;
   views: number;
   likes: number;
+  comments: number;
   subscribers: number;
   videoLength: number;
   category: string;
@@ -67,7 +68,7 @@ export async function POST(req: NextRequest) {
     // Extract or find video ID
     let videoId: string | null = null;
     const videoIdMatch = body.input.match(
-      /(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/
+      /(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/|shorts\/)([a-zA-Z0-9_-]{11})/
     );
     if (videoIdMatch) {
       videoId = videoIdMatch[1];
@@ -106,6 +107,7 @@ export async function POST(req: NextRequest) {
       author: videoData.snippet.channelTitle,
       views: parseInt(videoData.statistics.viewCount),
       likes: parseInt(videoData.statistics.likeCount),
+      comments: parseInt(videoData.statistics.commentCount),
       subscribers: parseInt(channelData.statistics.subscriberCount),
       videoLength: formatVideoLength(videoData.contentDetails.duration),
       category: videoData.snippet.categoryId,

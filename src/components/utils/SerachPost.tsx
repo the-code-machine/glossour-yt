@@ -5,7 +5,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useOutsideClick } from "./use-outside-click";
 import Link from "next/link";
 
-export function ExpandableCardDemo({ cards }: { cards: { title: string, src: string, description: string, ctaLink: string, content: string | (() => JSX.Element), views: string, likes: string }[] }) {
+export function ExpandableCardDemo({ cards }: { cards: { title: string, src: string, description: string, ctaLink: string, content: string | (() => JSX.Element), views: string, likes: string, comments: string }[] }) {
     const [active, setActive] = useState<(typeof cards)[number] | boolean | null>(
         null
     );
@@ -139,7 +139,7 @@ export function ExpandableCardDemo({ cards }: { cards: { title: string, src: str
                         layoutId={`card-${card.title}-${id}`}
                         key={`card-${card.title}-${id}`}
 
-                        className="p-4 flex flex-col  md:flex-row gap-4 justify-between  bg-white hover:bg-neutral-50 dark:hover:bg-neutral-800 rounded-xl cursor-pointer"
+                        className="p-4 flex flex-col   md:flex-row gap-4 justify-between  bg-white hover:bg-neutral-50 dark:hover:bg-neutral-800 rounded-xl cursor-pointer"
                     >
                         <motion.div onClick={() => setActive(card)} layoutId={`image-${card.title}-${id}`}>
                             <img
@@ -186,6 +186,19 @@ export function ExpandableCardDemo({ cards }: { cards: { title: string, src: str
 
 
                                     </span> {card.likes}
+                                </button>
+                                <button
+
+                                    className="px-4 py-2 text-sm flex justify-center w-full md:w-auto items-center rounded-full font-bold  opacity-100  bg-green-primary  text-black mt-1  md:mt-0"
+                                >
+                                    <span className="mr-1">
+                                        <svg width="24" height="14" viewBox="0 0 98 88" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M0.00399411 57.2619C0.00399411 60.133 1.17589 62.7385 3.06259 64.6291C4.95319 66.5158 7.55479 67.6877 10.4298 67.6877H52.5238C54.1293 67.6877 55.5824 68.3439 56.641 69.4025C57.6957 70.4572 58.3558 71.9181 58.3558 73.5197V76.6174C58.3558 78.5119 58.8363 80.2893 59.7347 81.8479L59.7386 81.8439C60.6331 83.3908 61.93 84.6916 63.5784 85.6408C65.2346 86.5979 67.0081 87.0744 68.7815 87.0744C70.5081 87.0744 72.2346 86.6213 73.8479 85.7189L73.9924 85.6408L92.7814 74.7928L92.7775 74.785C94.3713 73.8631 95.6408 72.6131 96.5314 71.1327L96.6174 70.996C97.5158 69.4413 97.9963 67.664 97.9963 65.7655V11.3555C97.9963 8.48439 96.8244 5.87889 94.9377 3.98829C93.051 2.10159 90.4455 0.929688 87.5705 0.929688H10.4295C7.55836 0.929688 4.95286 2.10159 3.06226 3.98829C1.17556 5.87889 0.00366211 8.48049 0.00366211 11.3555L0.00399411 57.2619ZM46.617 48.9454H18.781C17.5115 48.9454 16.4841 47.9182 16.4841 46.6486C16.4841 45.383 17.5114 44.3517 18.781 44.3517H46.617C47.8865 44.3517 48.9139 45.379 48.9139 46.6486C48.9139 47.9181 47.8866 48.9454 46.617 48.9454ZM79.215 48.9454H68.477C67.2075 48.9454 66.1801 47.9182 66.1801 46.6486C66.1801 45.383 67.2074 44.3517 68.477 44.3517H79.215C80.4845 44.3517 81.5119 45.379 81.5119 46.6486C81.5119 47.9181 80.4846 48.9454 79.215 48.9454ZM79.215 24.6875H18.781C17.5115 24.6875 16.4841 23.6602 16.4841 22.3906C16.4841 21.125 17.5114 20.0937 18.781 20.0937H79.215C80.4845 20.0937 81.5119 21.121 81.5119 22.3906C81.5119 23.6602 80.4846 24.6875 79.215 24.6875Z" fill="black" />
+                                        </svg>
+
+
+
+                                    </span> {card.comments}
                                 </button>
                                 <Link href={"/checkout/youtube"}>
                                     <button

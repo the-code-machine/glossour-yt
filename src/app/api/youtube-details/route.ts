@@ -10,6 +10,7 @@ interface VideoDetails {
   views: string | undefined;
   likes: string | undefined;
   subscribers: string | undefined;
+  comments: string | undefined;
   content: string | undefined;
   ctaLink: string;
 }
@@ -50,7 +51,7 @@ export async function POST(req: NextRequest) {
 
     // Check if input is a YouTube URL
     const videoIdMatch = body.input.match(
-      /(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/
+      /(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/|shorts\/)([a-zA-Z0-9_-]{11})/
     );
 
     if (videoIdMatch) {
@@ -112,6 +113,7 @@ export async function POST(req: NextRequest) {
       content: videoData.snippet.description
         ? trimDescription(videoData.snippet.description)
         : undefined,
+      comments: videoData.statistics.commentCount
     };
 
     return NextResponse.json([videoDetails]);
